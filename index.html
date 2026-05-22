@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Medicine Adoption | Portfolio Starter</title>
+    <style>
+        :root {
+            --bg: #f7f8fb;
+            --paper: #ffffff;
+            --ink: #111827;
+            --muted: #6b7280;
+            --line: #d7dce5;
+            --tab-line: #dbe3ef;
+            --blue: #2563eb;
+            --blue-soft: #93c5fd;
+            --grey: #6b7280;
+            --grey-soft: #aab2c0;
+            --shadow: 0 18px 48px rgba(17, 24, 39, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            background: var(--bg);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .tabs {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px 28px;
+            background: var(--paper);
+            border-bottom: 1px solid #edf0f5;
+            overflow-x: auto;
+        }
+
+        .tab {
+            min-height: 56px;
+            padding: 0 18px;
+            border: 2px solid var(--tab-line);
+            border-radius: 10px;
+            background: white;
+            color: var(--ink);
+            cursor: pointer;
+            font-size: clamp(1rem, 1.35vw, 1.45rem);
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .tab.is-active {
+            color: white;
+            background: var(--ink);
+            border-color: var(--ink);
+        }
+
+        .shell {
+            width: min(1220px, calc(100vw - 32px));
+            margin: 0 auto;
+            padding: 64px 0 80px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.2fr);
+            gap: 36px;
+            align-items: end;
+            margin-bottom: 42px;
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            color: var(--blue);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 760px;
+            margin: 0;
+            font-size: clamp(2.5rem, 6vw, 5.8rem);
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+        }
+
+        .lede {
+            max-width: 620px;
+            margin: 20px 0 0;
+            color: #374151;
+            font-size: clamp(1rem, 1.6vw, 1.2rem);
+            line-height: 1.7;
+        }
+
+        .metric-strip {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .metric {
+            min-height: 116px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .metric span {
+            display: block;
+            color: var(--muted);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .metric strong {
+            display: block;
+            margin-top: 10px;
+            color: var(--ink);
+            font-size: clamp(1.5rem, 3vw, 2.4rem);
+            line-height: 1;
+        }
+
+        .metric p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+
+        .chart-card {
+            padding: clamp(16px, 2.4vw, 28px);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: var(--shadow);
+        }
+
+        .chart {
+            width: 100%;
+            min-height: 520px;
+        }
+
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .axis path,
+        .grid path {
+            display: none;
+        }
+
+        .axis line,
+        .grid line {
+            stroke: var(--line);
+        }
+
+        .axis text {
+            fill: var(--muted);
+            font-size: 14px;
+        }
+
+        .axis-title {
+            fill: var(--muted);
+            font-size: 15px;
+            font-weight: 800;
+            dominant-baseline: middle;
+        }
+
+        .y-title {
+            text-anchor: start;
+        }
+
+        .x-title {
+            text-anchor: end;
+        }
+
+        .series-label {
+            font-size: 18px;
+            font-weight: 800;
+            dominant-baseline: middle;
+        }
+
+        .caption {
+            max-width: 880px;
+            margin: 16px 0 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .source-note {
+            margin-top: 34px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        .source-note a {
+            color: var(--ink);
+            font-weight: 800;
+        }
+
+        @media (max-width: 860px) {
+            .tabs {
+                justify-content: flex-start;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .chart {
+                min-height: 420px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="tabs" aria-label="Choose country">
+        <button class="tab is-active" data-country="Switzerland">Switzerland</button>
+        <button class="tab" data-country="Germany">Germany</button>
+        <button class="tab" data-country="Netherlands">Netherlands</button>
+        <button class="tab" data-country="Canada">Canada</button>
+        <button class="tab" data-country="France">France</button>
+        <button class="tab" data-country="Italy">Italy</button>
+        <button class="tab" data-country="United Kingdom">United Kingdom</button>
+    </nav>
+
+    <main class="shell">
+        <section class="hero">
+            <div>
+                <p class="eyebrow">Pharma market analytics</p>
+                <h1>Generic medicine adoption across OECD markets</h1>
+                <p class="lede">
+                    A portfolio data story about how generic medicines shape pharmaceutical market efficiency.
+                    The chart compares generic share by volume and by value, revealing whether uptake is driven
+                    by broad use, spending weight, or both.
+                </p>
+            </div>
+            <div class="metric-strip" aria-live="polite">
+                <article class="metric">
+                    <span>Latest volume share</span>
+                    <strong id="volume-metric">-</strong>
+                    <p>Generic medicines as a share of market volume.</p>
+                </article>
+                <article class="metric">
+                    <span>Latest value share</span>
+                    <strong id="value-metric">-</strong>
+                    <p>Generic medicines as a share of market value.</p>
+                </article>
+                <article class="metric">
+                    <span>Volume-value gap</span>
+                    <strong id="gap-metric">-</strong>
+                    <p>Higher gaps often signal lower-priced generic uptake.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="chart-card">
+            <div id="chart" class="chart" role="img" aria-label="Moving dot chart of generic medicine market share"></div>
+            <p class="caption" id="caption">
+                Click a country tab to compare generic adoption patterns over time.
+            </p>
+        </section>
+
+        <p class="source-note">
+            Data: OECD Health Statistics, Generic market dataset. The chart uses the exported OECD subset in `data/oecd_generic_market_chart_ready.json`.
+            Useful source pages:
+            <a href="https://data-explorer.oecd.org/" target="_blank" rel="noreferrer">OECD Data Explorer</a>,
+            <a href="https://www.oecd.org/en/data/datasets/oecd-health-statistics.html" target="_blank" rel="noreferrer">OECD Health Statistics</a>,
+            and
+            <a href="https://www.oecd.org/en/publications/health-at-a-glance-2025_8f9e3f98-en/full-report/generics-and-biosimilars_e68f4e94.html" target="_blank" rel="noreferrer">Generics and biosimilars</a>.
+        </p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script>
+        const embeddedOecdChartData = [
+          {
+                    "country_code": "CHE",
+                    "country": "Switzerland",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2017,
+                    "volume": 22.8,
+                    "value": 17.9
+          },
+          {
+                    "country_code": "CHE",
+                    "country": "Switzerland",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2018,
+                    "volume": 20.8,
+                    "value": 18.2
+          },
+          {
+                    "country_code": "CHE",
+                    "country": "Switzerland",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2019,
+                    "volume": 21.7,
+                    "value": 18.6
+          },
+          {
+                    "country_code": "CHE",
+                    "country": "Switzerland",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2020,
+                    "volume": 21.5,
+                    "value": 18.2
+          },
+          {
+                    "country_code": "CHE",
+                    "country": "Switzerland",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2021,
+                    "volume": 22.7,
+                    "value": 18.5
+          },
+          {
+                    "country_code": "CHE",
+                    "country": "Switzerland",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2022,
+                    "volume": 23.3,
+                    "value": 18.8
+          },
+          {
+                    "country_code": "CHE",
+                    "country": "Switzerland",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2023,
+                    "volume": 24.6,
+                    "value": 18.9
+          },
+          {
+                    "country_code": "CHE",
+                    "country": "Switzerland",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2024,
+                    "volume": 26.5,
+                    "value": 20.6
+          },
+          {
+                    "country_code": "DEU",
+                    "country": "Germany",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2016,
+                    "volume": 81.2,
+                    "value": 34.1
+          },
+          {
+                    "country_code": "DEU",
+                    "country": "Germany",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2017,
+                    "volume": 82.3,
+                    "value": 34.6
+          },
+          {
+                    "country_code": "DEU",
+                    "country": "Germany",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2018,
+                    "volume": 82.6,
+                    "value": 32.4
+          },
+          {
+                    "country_code": "DEU",
+                    "country": "Germany",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2019,
+                    "volume": 83,
+                    "value": 32.1
+          },
+          {
+                    "country_code": "DEU",
+                    "country": "Germany",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2020,
+                    "volume": 83.3,
+                    "value": 30.8
+          },
+          {
+                    "country_code": "DEU",
+                    "country": "Germany",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2021,
+                    "volume": 83.4,
+                    "value": 29.2
+          },
+          {
+                    "country_code": "DEU",
+                    "country": "Germany",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2022,
+                    "volume": 83.1,
+                    "value": 29.1
+          },
+          {
+                    "country_code": "DEU",
+                    "country": "Germany",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2023,
+                    "volume": 83.6,
+                    "value": 28.9
+          },
+          {
+                    "country_code": "NLD",
+                    "country": "Netherlands",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2016,
+                    "volume": 74.1,
+                    "value": 16.8
+          },
+          {
+                    "country_code": "NLD",
+                    "country": "Netherlands",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2017,
+                    "volume": 75.6,
+                    "value": 17.9
+          },
+          {
+                    "country_code": "NLD",
+                    "country": "Netherlands",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2018,
+                    "volume": 77.7,
+                    "value": 20
+          },
+          {
+                    "country_code": "NLD",
+                    "country": "Netherlands",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2019,
+                    "volume": 78,
+                    "value": 21.5
+          },
+          {
+                    "country_code": "NLD",
+                    "country": "Netherlands",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2020,
+                    "volume": 78.7,
+                    "value": 22.5
+          },
+          {
+                    "country_code": "NLD",
+                    "country": "Netherlands",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2021,
+                    "volume": 78.6,
+                    "value": 24.5
+          },
+          {
+                    "country_code": "NLD",
+                    "country": "Netherlands",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2022,
+                    "volume": 80,
+                    "value": 25
+          },
+          {
+                    "country_code": "NLD",
+                    "country": "Netherlands",
+                    "market_type_code": "TPP",
+                    "market_type": "Third-party-payer market",
+                    "year": 2023,
+                    "volume": 79,
+                    "value": 27.4
+          },
+          {
+                    "country_code": "CAN",
+                    "country": "Canada",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2015,
+                    "volume": 73,
+                    "value": 28
+          },
+          {
+                    "country_code": "CAN",
+                    "country": "Canada",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2016,
+                    "volume": 74,
+                    "value": 28
+          },
+          {
+                    "country_code": "CAN",
+                    "country": "Canada",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2017,
+                    "volume": 76,
+                    "value": 27
+          },
+          {
+                    "country_code": "CAN",
+                    "country": "Canada",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2018,
+                    "volume": 76,
+                    "value": 25
+          },
+          {
+                    "country_code": "CAN",
+                    "country": "Canada",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2019,
+                    "volume": 76.6,
+                    "value": 22.8
+          },
+          {
+                    "country_code": "CAN",
+                    "country": "Canada",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2020,
+                    "volume": 77.2,
+                    "value": 22.4
+          },
+          {
+                    "country_code": "CAN",
+                    "country": "Canada",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2021,
+                    "volume": 78.1,
+                    "value": 22.4
+          },
+          {
+                    "country_code": "CAN",
+                    "country": "Canada",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2022,
+                    "volume": 79,
+                    "value": 23
+          },
+          {
+                    "country_code": "FRA",
+                    "country": "France",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2016,
+                    "volume": 35.7,
+                    "value": 30.1
+          },
+          {
+                    "country_code": "FRA",
+                    "country": "France",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2017,
+                    "volume": 36.4,
+                    "value": 31.8
+          },
+          {
+                    "country_code": "FRA",
+                    "country": "France",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2018,
+                    "volume": 37.3,
+                    "value": 33.2
+          },
+          {
+                    "country_code": "FRA",
+                    "country": "France",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2019,
+                    "volume": 38.4,
+                    "value": 33
+          },
+          {
+                    "country_code": "FRA",
+                    "country": "France",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2020,
+                    "volume": 40.2,
+                    "value": 32.3
+          },
+          {
+                    "country_code": "FRA",
+                    "country": "France",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2021,
+                    "volume": 40.9,
+                    "value": 33.8
+          },
+          {
+                    "country_code": "FRA",
+                    "country": "France",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2022,
+                    "volume": 40.8,
+                    "value": 31.6
+          },
+          {
+                    "country_code": "FRA",
+                    "country": "France",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2023,
+                    "volume": 42,
+                    "value": 29.7
+          },
+          {
+                    "country_code": "ITA",
+                    "country": "Italy",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2017,
+                    "volume": 23.5,
+                    "value": 8.1
+          },
+          {
+                    "country_code": "ITA",
+                    "country": "Italy",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2018,
+                    "volume": 25.2,
+                    "value": 8.9
+          },
+          {
+                    "country_code": "ITA",
+                    "country": "Italy",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2019,
+                    "volume": 26.2,
+                    "value": 9.1
+          },
+          {
+                    "country_code": "ITA",
+                    "country": "Italy",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2020,
+                    "volume": 27,
+                    "value": 9
+          },
+          {
+                    "country_code": "ITA",
+                    "country": "Italy",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2021,
+                    "volume": 27.3,
+                    "value": 9
+          },
+          {
+                    "country_code": "ITA",
+                    "country": "Italy",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2022,
+                    "volume": 27.7,
+                    "value": 8.9
+          },
+          {
+                    "country_code": "ITA",
+                    "country": "Italy",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2023,
+                    "volume": 28.4,
+                    "value": 8.9
+          },
+          {
+                    "country_code": "ITA",
+                    "country": "Italy",
+                    "market_type_code": "_T",
+                    "market_type": "Total",
+                    "year": 2024,
+                    "volume": 28.6,
+                    "value": 8.7
+          },
+          {
+                    "country_code": "GBR",
+                    "country": "United Kingdom",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2018,
+                    "volume": 80.1,
+                    "value": 53.2
+          },
+          {
+                    "country_code": "GBR",
+                    "country": "United Kingdom",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2019,
+                    "volume": 80.2,
+                    "value": 53.1
+          },
+          {
+                    "country_code": "GBR",
+                    "country": "United Kingdom",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2020,
+                    "volume": 80.6,
+                    "value": 54.7
+          },
+          {
+                    "country_code": "GBR",
+                    "country": "United Kingdom",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2021,
+                    "volume": 74.6,
+                    "value": 53.2
+          },
+          {
+                    "country_code": "GBR",
+                    "country": "United Kingdom",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2022,
+                    "volume": 79.1,
+                    "value": 53.3
+          },
+          {
+                    "country_code": "GBR",
+                    "country": "United Kingdom",
+                    "market_type_code": "COMMUNITY",
+                    "market_type": "Community pharmacy market",
+                    "year": 2023,
+                    "volume": 80.1,
+                    "value": 54.1
+          }
+];
+
+        let data = [];
+        let sourceMeta = null;
+        const chart = d3.select("#chart");
+        const volumeMetric = document.querySelector("#volume-metric");
+        const valueMetric = document.querySelector("#value-metric");
+        const gapMetric = document.querySelector("#gap-metric");
+        const caption = document.querySelector("#caption");
+        const colors = {
+            volume: getComputedStyle(document.documentElement).getPropertyValue("--blue").trim(),
+            volumeSoft: getComputedStyle(document.documentElement).getPropertyValue("--blue-soft").trim(),
+            value: getComputedStyle(document.documentElement).getPropertyValue("--grey").trim(),
+            valueSoft: getComputedStyle(document.documentElement).getPropertyValue("--grey-soft").trim()
+        };
+
+        let activeCountry = "Switzerland";
+        let svg;
+        let plot;
+        let xScale;
+        let yScale;
+        let innerWidth;
+        let innerHeight;
+        let margin;
+        let springFrame = 0;
+        const springState = new Map();
+
+        function getSize() {
+            const width = Math.max(340, chart.node().clientWidth);
+            return {
+                width,
+                height: width < 760 ? 430 : 520,
+                margin: width < 760
+                    ? { top: 66, right: 32, bottom: 76, left: 112 }
+                    : { top: 78, right: 120, bottom: 78, left: 160 }
+            };
+        }
+
+        function rowsForCountry() {
+            return data.filter(d => d.country === activeCountry).sort((a, b) => a.year - b.year);
+        }
+
+        function prepareChartData(rows) {
+            return rows.filter(d => d.year >= 2018);
+        }
+
+        function setupChart() {
+            chart.selectAll("*").remove();
+            const allYears = data.map(d => d.year);
+            const size = getSize();
+            const width = size.width;
+            const height = size.height;
+            margin = size.margin;
+            innerWidth = width - margin.left - margin.right;
+            innerHeight = height - margin.top - margin.bottom;
+
+            svg = chart.append("svg")
+                .attr("viewBox", `0 0 ${width} ${height}`);
+
+            plot = svg.append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+            xScale = d3.scaleLinear()
+                .domain([d3.min(allYears), d3.max(allYears)])
+                .range([0, innerWidth]);
+
+            yScale = d3.scaleLinear()
+                .domain([0, 100])
+                .range([innerHeight, 0]);
+
+            plot.append("g")
+                .attr("class", "grid")
+                .call(d3.axisLeft(yScale).tickValues([0, 25, 50, 75, 100]).tickSize(-innerWidth).tickFormat(""));
+
+            plot.append("g")
+                .attr("class", "axis y-axis")
+                .call(d3.axisLeft(yScale).tickValues([0, 25, 50, 75, 100]).tickPadding(14).tickFormat(d => `${d}%`));
+
+            plot.append("g")
+                .attr("class", "axis x-axis")
+                .attr("transform", `translate(0, ${innerHeight})`)
+                .call(d3.axisBottom(xScale).tickValues(d3.range(d3.min(allYears), d3.max(allYears) + 1)).tickFormat(d3.format("d")));
+
+            svg.append("text")
+                .attr("class", "axis-title y-title")
+                .attr("x", margin.left)
+                .attr("y", margin.top - 30)
+                .text("Generic market share (%)");
+
+            svg.append("text")
+                .attr("class", "axis-title x-title")
+                .attr("x", margin.left + innerWidth)
+                .attr("y", margin.top + innerHeight + 48)
+                .text("Year");
+        }
+
+        function lineFor(key) {
+            return d3.line()
+                .x(d => xScale(d.year))
+                .y(d => yScale(d[key]))
+                .curve(d3.curveLinear);
+        }
+
+        function pointRows(rows, key) {
+            return rows.map((d, index) => ({
+                country: d.country,
+                index,
+                year: d.year,
+                series: key,
+                value: d[key]
+            }));
+        }
+
+        function springTo(selection, targetFor) {
+            selection.each(function(d) {
+                const id = `${d.series}-${d.index}`;
+                const target = targetFor(d);
+                const current = springState.get(id) || {
+                    x: target.x,
+                    y: target.y,
+                    r: 4,
+                    vx: 0,
+                    vy: 0,
+                    vr: 0
+                };
+
+                springState.set(id, {
+                    ...current,
+                    targetX: target.x,
+                    targetY: target.y,
+                    targetR: target.r,
+                    node: this
+                });
+            });
+
+            startSpringLoop();
+        }
+
+        function startSpringLoop() {
+            if (springFrame) {
+                cancelAnimationFrame(springFrame);
+            }
+
+            const stiffness = 0.055;
+            const damping = 0.78;
+
+            function tick() {
+                let moving = false;
+
+                springState.forEach(item => {
+                    item.vx = (item.vx + (item.targetX - item.x) * stiffness) * damping;
+                    item.vy = (item.vy + (item.targetY - item.y) * stiffness) * damping;
+                    item.vr = (item.vr + (item.targetR - item.r) * stiffness) * damping;
+                    item.x += item.vx;
+                    item.y += item.vy;
+                    item.r += item.vr;
+
+                    item.node.setAttribute("cx", item.x);
+                    item.node.setAttribute("cy", item.y);
+                    item.node.setAttribute("r", item.r);
+
+                    if (
+                        Math.abs(item.targetX - item.x) > 0.05 ||
+                        Math.abs(item.targetY - item.y) > 0.05 ||
+                        Math.abs(item.vx) > 0.02 ||
+                        Math.abs(item.vy) > 0.02
+                    ) {
+                        moving = true;
+                    }
+                });
+
+                if (moving) {
+                    springFrame = requestAnimationFrame(tick);
+                } else {
+                    springFrame = 0;
+                }
+            }
+
+            springFrame = requestAnimationFrame(tick);
+        }
+
+        function updateMetrics(rows) {
+            const latest = rows[rows.length - 1];
+            const gap = latest.volume - latest.value;
+            const format = d3.format(".1f");
+            volumeMetric.textContent = `${format(latest.volume)}%`;
+            valueMetric.textContent = `${format(latest.value)}%`;
+            gapMetric.textContent = `${format(gap)} pts`;
+            caption.textContent = `${activeCountry}: generic volume share is ${format(latest.volume)}%, compared with ${format(latest.value)}% by value in ${latest.year}. Market type used: ${latest.market_type}.`;
+        }
+
+        function renderCountry(animate = true) {
+            const rows = rowsForCountry();
+            updateMetrics(rows);
+
+            const series = [
+                { key: "volume", label: "Volume share", line: colors.volume, dot: colors.volumeSoft },
+                { key: "value", label: "Value share", line: colors.value, dot: colors.valueSoft }
+            ];
+
+            series.forEach(item => {
+                plot.selectAll(`path.${item.key}-line`)
+                    .data([rows])
+                    .join(
+                        enter => enter.append("path")
+                            .attr("class", `${item.key}-line`)
+                            .attr("fill", "none")
+                            .attr("stroke", item.line)
+                            .attr("stroke-width", 2.5)
+                            .attr("d", lineFor(item.key)),
+                        update => update,
+                        exit => exit.remove()
+                    )
+                    .attr("d", lineFor(item.key));
+
+                const circles = plot.selectAll(`circle.${item.key}-dot`)
+                    .data(pointRows(rows, item.key), d => `${d.series}-${d.index}`)
+                    .join(
+                        enter => enter.append("circle")
+                            .attr("class", `dot ${item.key}-dot`)
+                            .attr("cx", d => xScale(d.year))
+                            .attr("cy", d => yScale(d.value))
+                            .attr("r", 4)
+                            .attr("fill", item.line)
+                            .attr("stroke", item.line)
+                            .attr("opacity", 0.75),
+                        update => update,
+                        exit => exit.each(d => springState.delete(`${d.series}-${d.index}`)).remove()
+                    );
+
+                if (animate) {
+                    springTo(circles, d => ({
+                        x: xScale(d.year),
+                        y: yScale(d.value),
+                        r: 9
+                    }));
+                } else {
+                    circles
+                        .attr("cx", d => xScale(d.year))
+                        .attr("cy", d => yScale(d.value))
+                        .attr("r", 9);
+
+                    circles.each(function(d) {
+                        springState.set(`${d.series}-${d.index}`, {
+                            x: xScale(d.year),
+                            y: yScale(d.value),
+                            r: 9,
+                            vx: 0,
+                            vy: 0,
+                            vr: 0,
+                            targetX: xScale(d.year),
+                            targetY: yScale(d.value),
+                            targetR: 9,
+                            node: this
+                        });
+                    });
+                }
+
+                const lastPoint = rows[rows.length - 1];
+                plot.selectAll(`text.${item.key}-label`)
+                    .data([lastPoint])
+                    .join("text")
+                    .attr("class", `series-label ${item.key}-label`)
+                    .attr("fill", item.line)
+                    .attr("x", xScale(lastPoint.year) + 18)
+                    .attr("y", yScale(lastPoint[item.key]))
+                    .text(item.label);
+            });
+        }
+
+        function selectCountry(country) {
+            activeCountry = country;
+            document.querySelectorAll(".tab").forEach(button => {
+                button.classList.toggle("is-active", button.dataset.country === country);
+            });
+            renderCountry(true);
+        }
+
+        document.querySelectorAll(".tab").forEach(button => {
+            button.addEventListener("click", () => selectCountry(button.dataset.country));
+        });
+
+        async function init() {
+            try {
+                const response = await fetch("data/oecd_generic_market_chart_ready.json");
+                const payload = await response.json();
+                sourceMeta = payload.source;
+                data = prepareChartData(payload.data);
+                activeCountry = data[0].country;
+                document.querySelectorAll(".tab").forEach(button => {
+                    button.classList.toggle("is-active", button.dataset.country === activeCountry);
+                });
+                setupChart();
+                renderCountry(false);
+            } catch (error) {
+                sourceMeta = { note: "Using embedded OECD chart-ready fallback because the JSON file could not be fetched from this browser context." };
+                data = prepareChartData(embeddedOecdChartData);
+                activeCountry = data[0].country;
+                document.querySelectorAll(".tab").forEach(button => {
+                    button.classList.toggle("is-active", button.dataset.country === activeCountry);
+                });
+                setupChart();
+                renderCountry(false);
+                console.info("Using embedded OECD fallback data. Open through a local server to fetch data/oecd_generic_market_chart_ready.json directly.");
+            }
+        }
+
+        init();
+
+        window.addEventListener("resize", () => {
+            window.clearTimeout(window.pharmaResizeTimer);
+            window.pharmaResizeTimer = window.setTimeout(() => {
+                if (data.length) {
+                    setupChart();
+                    renderCountry(false);
+                }
+            }, 150);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "long_rows": 2141,
+  "countries_in_long_export": 30,
+  "chart_rows": 54,
+  "chart_countries": [
+    "Switzerland (Total)",
+    "Germany (Third-party-payer market)",
+    "Netherlands (Third-party-payer market)",
+    "Canada (Total)",
+    "France (Community pharmacy market)",
+    "Italy (Total)",
+    "United Kingdom (Community pharmacy market)"
+  ],
+  "excluded_or_missing": []
+}

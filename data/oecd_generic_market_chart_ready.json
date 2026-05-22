@@ -1,0 +1,616 @@
+{
+  "source": {
+    "name": "OECD Data Explorer - Generic market",
+    "dataflow": "OECD.ELS.HD, HEALTH_PHMC@DF_GEN_MRKT, version 1.1",
+    "api_url": "https://sdmx.oecd.org/public/rest/data/OECD.ELS.HD,HEALTH_PHMC@DF_GEN_MRKT,1.1/all?dimensionAtObservation=AllDimensions",
+    "downloaded_at": "2026-05-22T19:23:59.928Z",
+    "note": "Chart-ready subset chooses Total market when available, otherwise Community pharmacy market, otherwise Third-party-payer market. Only years with both value and volume observations are included."
+  },
+  "countries": [
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "included": true,
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ]
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "included": true,
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "included": true,
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "included": true,
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ]
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "included": true,
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "included": true,
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ]
+    },
+    {
+      "country_code": "GBR",
+      "country": "United Kingdom",
+      "included": true,
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ]
+    }
+  ],
+  "data": [
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2017,
+      "volume": 22.8,
+      "value": 17.9
+    },
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2018,
+      "volume": 20.8,
+      "value": 18.2
+    },
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2019,
+      "volume": 21.7,
+      "value": 18.6
+    },
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2020,
+      "volume": 21.5,
+      "value": 18.2
+    },
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2021,
+      "volume": 22.7,
+      "value": 18.5
+    },
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2022,
+      "volume": 23.3,
+      "value": 18.8
+    },
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2023,
+      "volume": 24.6,
+      "value": 18.9
+    },
+    {
+      "country_code": "CHE",
+      "country": "Switzerland",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2024,
+      "volume": 26.5,
+      "value": 20.6
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2016,
+      "volume": 81.2,
+      "value": 34.1
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2017,
+      "volume": 82.3,
+      "value": 34.6
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2018,
+      "volume": 82.6,
+      "value": 32.4
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2019,
+      "volume": 83,
+      "value": 32.1
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2020,
+      "volume": 83.3,
+      "value": 30.8
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2021,
+      "volume": 83.4,
+      "value": 29.2
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2022,
+      "volume": 83.1,
+      "value": 29.1
+    },
+    {
+      "country_code": "DEU",
+      "country": "Germany",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2023,
+      "volume": 83.6,
+      "value": 28.9
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2016,
+      "volume": 74.1,
+      "value": 16.8
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2017,
+      "volume": 75.6,
+      "value": 17.9
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2018,
+      "volume": 77.7,
+      "value": 20
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2019,
+      "volume": 78,
+      "value": 21.5
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2020,
+      "volume": 78.7,
+      "value": 22.5
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2021,
+      "volume": 78.6,
+      "value": 24.5
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2022,
+      "volume": 80,
+      "value": 25
+    },
+    {
+      "country_code": "NLD",
+      "country": "Netherlands",
+      "market_type_code": "TPP",
+      "market_type": "Third-party-payer market",
+      "year": 2023,
+      "volume": 79,
+      "value": 27.4
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2015,
+      "volume": 73,
+      "value": 28
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2016,
+      "volume": 74,
+      "value": 28
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2017,
+      "volume": 76,
+      "value": 27
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2018,
+      "volume": 76,
+      "value": 25
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2019,
+      "volume": 76.6,
+      "value": 22.8
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2020,
+      "volume": 77.2,
+      "value": 22.4
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2021,
+      "volume": 78.1,
+      "value": 22.4
+    },
+    {
+      "country_code": "CAN",
+      "country": "Canada",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2022,
+      "volume": 79,
+      "value": 23
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2016,
+      "volume": 35.7,
+      "value": 30.1
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2017,
+      "volume": 36.4,
+      "value": 31.8
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2018,
+      "volume": 37.3,
+      "value": 33.2
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2019,
+      "volume": 38.4,
+      "value": 33
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2020,
+      "volume": 40.2,
+      "value": 32.3
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2021,
+      "volume": 40.9,
+      "value": 33.8
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2022,
+      "volume": 40.8,
+      "value": 31.6
+    },
+    {
+      "country_code": "FRA",
+      "country": "France",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2023,
+      "volume": 42,
+      "value": 29.7
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2017,
+      "volume": 23.5,
+      "value": 8.1
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2018,
+      "volume": 25.2,
+      "value": 8.9
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2019,
+      "volume": 26.2,
+      "value": 9.1
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2020,
+      "volume": 27,
+      "value": 9
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2021,
+      "volume": 27.3,
+      "value": 9
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2022,
+      "volume": 27.7,
+      "value": 8.9
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2023,
+      "volume": 28.4,
+      "value": 8.9
+    },
+    {
+      "country_code": "ITA",
+      "country": "Italy",
+      "market_type_code": "_T",
+      "market_type": "Total",
+      "year": 2024,
+      "volume": 28.6,
+      "value": 8.7
+    },
+    {
+      "country_code": "GBR",
+      "country": "United Kingdom",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2018,
+      "volume": 80.1,
+      "value": 53.2
+    },
+    {
+      "country_code": "GBR",
+      "country": "United Kingdom",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2019,
+      "volume": 80.2,
+      "value": 53.1
+    },
+    {
+      "country_code": "GBR",
+      "country": "United Kingdom",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2020,
+      "volume": 80.6,
+      "value": 54.7
+    },
+    {
+      "country_code": "GBR",
+      "country": "United Kingdom",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2021,
+      "volume": 74.6,
+      "value": 53.2
+    },
+    {
+      "country_code": "GBR",
+      "country": "United Kingdom",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2022,
+      "volume": 79.1,
+      "value": 53.3
+    },
+    {
+      "country_code": "GBR",
+      "country": "United Kingdom",
+      "market_type_code": "COMMUNITY",
+      "market_type": "Community pharmacy market",
+      "year": 2023,
+      "volume": 80.1,
+      "value": 54.1
+    }
+  ]
+}
