@@ -71,10 +71,19 @@
 
         .hero {
             display: grid;
-            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.2fr);
+            gap: 28px;
+            margin-bottom: 34px;
+        }
+
+        .hero-heading {
+            max-width: 1180px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(340px, 1.2fr);
             gap: 36px;
-            align-items: start;
-            margin-bottom: 32px;
+            align-items: stretch;
         }
 
         .eyebrow {
@@ -87,9 +96,9 @@
         }
 
 h1 {
-    max-width: 760px;
+    max-width: none;
     margin: 0;
-    font-size: clamp(2.5rem, 5.6vw, 5.35rem);
+    font-size: clamp(2.8rem, 6.3vw, 6.15rem);
     line-height: 0.94;
     letter-spacing: -0.04em;
 }
@@ -107,7 +116,7 @@ h1 {
 
 .lede {
     max-width: 620px;
-    margin: 20px 0 0;
+    margin: 0;
     color: #374151;
     font-size: clamp(1rem, 1.6vw, 1.2rem);
     line-height: 1.7;
@@ -117,7 +126,7 @@ h1 {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 10px;
-            padding-top: 28px;
+            align-self: stretch;
         }
 
         .metric {
@@ -234,7 +243,7 @@ h1 {
                 justify-content: flex-start;
             }
 
-            .hero {
+            .hero-content {
                 grid-template-columns: 1fr;
             }
 
@@ -261,32 +270,34 @@ h1 {
 
     <main class="shell">
         <section class="hero">
-            <div>
+            <div class="hero-heading">
                 <p class="eyebrow">Pharma market analytics</p>
                 <h1>Generic medicine adoption across OECD markets</h1>
                 <span class="byline">by Anna Kudyba</span>
+            </div>
+            <div class="hero-content">
                 <p class="lede">
                     A portfolio data story about how generic medicines shape pharmaceutical market efficiency.
                     The chart compares generic share by volume and by value, revealing whether uptake is driven
                     by broad use, spending weight, or both.
                 </p>
-            </div>
-            <div class="metric-strip" aria-live="polite">
-                <article class="metric">
-                    <span>Latest volume share</span>
-                    <strong id="volume-metric">-</strong>
-                    <p>Generic medicines as a share of market volume.</p>
-                </article>
-                <article class="metric">
-                    <span>Latest value share</span>
-                    <strong id="value-metric">-</strong>
-                    <p>Generic medicines as a share of market value.</p>
-                </article>
-                <article class="metric">
-                    <span>Volume-value gap</span>
-                    <strong id="gap-metric">-</strong>
-                    <p>Higher gaps often signal lower-priced generic uptake.</p>
-                </article>
+                <div class="metric-strip" aria-live="polite">
+                    <article class="metric">
+                        <span>Latest volume share</span>
+                        <strong id="volume-metric">-</strong>
+                        <p>Generic medicines as a share of market volume.</p>
+                    </article>
+                    <article class="metric">
+                        <span>Latest value share</span>
+                        <strong id="value-metric">-</strong>
+                        <p>Generic medicines as a share of market value.</p>
+                    </article>
+                    <article class="metric">
+                        <span>Volume-value gap</span>
+                        <strong id="gap-metric">-</strong>
+                        <p>Higher gaps often signal lower-priced generic uptake.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
